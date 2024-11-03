@@ -1,10 +1,10 @@
 // models/user.js
 module.exports = {
-    documentNumber: "",  // Número de documento
+    documentNumber: "",  // Numero de documento
     documentType: "",    // Tipo de documento
     name: "",            // Nombre
-    phoneNumber: "",     // Número de celular
-    email: "",           // Correo electrónico
-    password: ""         // Contraseña (¡Debe estar encriptada!)
+    phoneNumber: "",     // Numero de celular
+    email: "",           // Correo electronico
+    password: ""         // Contraseña
   };
   
