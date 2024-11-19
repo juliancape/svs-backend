@@ -2,7 +2,7 @@
 
 const express = require("express");
 const { collection, getDocs, getDoc, addDoc, updateDoc, deleteDoc, doc } = require("firebase/firestore");
-const { db } = require("../firebaseConfig"); // Asegúrate de importar la configuración de Firebase
+const { db } = require("../firebaseConfig");
 const router = express.Router();
 
 // Obtener todos los votos
@@ -34,15 +34,15 @@ router.get("/votes/:id", async (req, res) => {
     }
 });
 
-// Crear un nuevo voto con verificación de electionId y userId
+// Crear un nuevo voto con verificacion de electionId y userId
 router.post("/votes", async (req, res) => {
     const { electionId, userId, candidateId, timestamp, isValid } = req.body;
 
     try {
-        // Verificar si la elección existe
+        // Verificar si la eleccion existe
         const electionDoc = await getDoc(doc(db, "elections", electionId));
         if (!electionDoc.exists()) {
-            return res.status(404).json({ message: "Elección no encontrada. No se puede registrar el voto." });
+            return res.status(404).json({ message: "Eleccion no encontrada. No se puede registrar el voto." });
         }
 
         // Verificar si el usuario existe
@@ -51,7 +51,7 @@ router.post("/votes", async (req, res) => {
             return res.status(404).json({ message: "Usuario no encontrado. No se puede registrar el voto." });
         }
 
-        // Si la elección y el usuario existen, proceder con la creación del voto
+        // Si la eleccion y el usuario existen, proceder con la creacion del voto
         const docRef = await addDoc(collection(db, "votes"), {
             electionId,
             userId,

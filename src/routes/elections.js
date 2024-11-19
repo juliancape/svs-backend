@@ -18,7 +18,7 @@ router.get("/elections", async (req, res) => {
     }
 });
 
-// Obtener una elección por ID
+// Obtener una eleccion por ID
 router.get("/elections/:id", async (req, res) => {
     const { id } = req.params;
 
@@ -27,14 +27,14 @@ router.get("/elections/:id", async (req, res) => {
         if (electionDoc.exists()) {
             res.status(200).json(electionDoc.data());
         } else {
-            res.status(404).json({ message: "Elección no encontrada" });
+            res.status(404).json({ message: "Eleccion no encontrada" });
         }
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 });
 
-// Crear una nueva elección con verificación de usuario
+// Crear una nueva eleccion con verificacion de usuario
 router.post("/elections", async (req, res) => {
     const { title, description, startDate, endDate, createdBy, isActive } = req.body;
 
@@ -42,10 +42,10 @@ router.post("/elections", async (req, res) => {
         // Verificar si el usuario de createdBy existe
         const userDoc = await getDoc(doc(db, "users", createdBy));
         if (!userDoc.exists()) {
-            return res.status(404).json({ message: "Usuario no encontrado. No se puede crear la elección." });
+            return res.status(404).json({ message: "Usuario no encontrado. No se puede crear la eleccion." });
         }
 
-        // Si el usuario existe, proceder con la creación de la elección
+        // Si el usuario existe, proceder con la creacion de la eleccion
         const docRef = await addDoc(collection(db, "elections"), {
             title,
             description,
@@ -55,14 +55,14 @@ router.post("/elections", async (req, res) => {
             isActive: isActive || false
         });
 
-        res.status(201).json({ id: docRef.id, message: "Elección creada exitosamente" });
+        res.status(201).json({ id: docRef.id, message: "Eleccion creada exitosamente" });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 });
 
 
-// Actualizar una elección por ID
+// Actualizar una eleccion por ID
 router.put("/elections/:id", async (req, res) => {
     const { id } = req.params;
     const { title, description, startDate, endDate, isActive } = req.body;
@@ -75,19 +75,19 @@ router.put("/elections/:id", async (req, res) => {
             endDate,
             isActive
         });
-        res.status(200).json({ message: "Elección actualizada exitosamente" });
+        res.status(200).json({ message: "Eleccion actualizada exitosamente" });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 });
 
-// Eliminar una elección por ID
+// Eliminar una eleccion por ID
 router.delete("/elections/:id", async (req, res) => {
     const { id } = req.params;
 
     try {
         await deleteDoc(doc(db, "elections", id));
-        res.status(200).json({ message: "Elección eliminada exitosamente" });
+        res.status(200).json({ message: "Eleccion eliminada exitosamente" });
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

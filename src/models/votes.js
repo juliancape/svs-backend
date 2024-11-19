@@ -1,9 +1,9 @@
 // models/vote.js
 module.exports = {
-    voteId: "",             // ID único del voto
-    electionId: "",         // ID de la elección (tiene que exisitir ese Id de eleccion)
+    voteId: "",             // ID unico del voto
+    electionId: "",         // ID de la eleccion (tiene que exisitir ese Id de eleccion)
     userId: "",             // ID del votante (tiene que existir ese user)
-    candidateId: "",        // ID del candidato o la opción seleccionada
-    timestamp: "",          // Fecha y hora en que se emitió el voto
-    isValid: true           // Bandera para indicar si el voto es válido
+    candidateId: "",        // ID del candidato o la opcion seleccionada
+    timestamp: "",          // Fecha y hora en que se emitio el voto
+    isValid: true           // Estado voto
 };

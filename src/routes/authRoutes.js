@@ -14,7 +14,7 @@ router.post("/register", async (req, res) => {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const uid = userCredential.user.uid;
 
-        // Guardar información adicional del usuario en Firestore
+        // Guardar informacion adicional del usuario en Firestore
         await setDoc(doc(db, "users", uid), {
             documentNumber,
             documentType,
@@ -29,7 +29,7 @@ router.post("/register", async (req, res) => {
     }
 });
 
-// Iniciar sesión de usuario
+// Iniciar sesion de usuario
 router.post("/login", async (req, res) => {
     const { email, password } = req.body;
 
@@ -38,9 +38,9 @@ router.post("/login", async (req, res) => {
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const uid = userCredential.user.uid;
 
-        res.status(200).json({ message: "Inicio de sesión exitoso", uid });
+        res.status(200).json({ message: "Inicio de sesion exitoso", uid });
     } catch (error) {
-        res.status(400).json({ error: "Credenciales inválidas" });
+        res.status(400).json({ error: "Credenciales invalidas" });
     }
 });
 

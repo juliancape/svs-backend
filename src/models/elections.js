@@ -1,10 +1,10 @@
 // models/election.js
 module.exports = {
-    electionId: "",        // ID único de la elección
-    title: "",             // Título de la elección 
-    description: "",       // Descripción de la elección
-    startDate: "",         // Fecha de inicio de la elección
-    endDate: "",           // Fecha de finalización de la elección
-    createdBy: "",         // ID del usuario que creó la elección (el user tiene que existir)
-    isActive: true        // Estado de la elección
+    electionId: "",        // ID unico de la eleccion
+    title: "",             // Titulo de la eleccion 
+    description: "",       // Descripcion de la eleccion
+    startDate: "",         // Fecha de inicio de la eleccion
+    endDate: "",           // Fecha de finalizacion de la eleccion
+    createdBy: "",         // ID del usuario que creo la eleccion (el user tiene que existir)
+    isActive: true        // Estado de la eleccion
 };
