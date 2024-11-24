@@ -1,23 +1,25 @@
 import React, { useState } from "react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../services/firebaseConfig";
+import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import "../styles/Login.css";
 
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState("");
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        setError("");
         try {
-            await signInWithEmailAndPassword(auth, email, password);
-            alert("Inicio de sesión exitoso");
+            const response = await axios.post('http://localhost:5000/auth/login', { email, password });
+            // Si el inicio de sesión es exitoso, redirige a ElectionList - Para realizar las votacione -Perfil
+            if (response.status === 200) {
+                navigate('/elections');
+            }
         } catch (err) {
-            setError("Error, Intentalo de nuevo.");
+            // Manejo de errores
+            alert('Credenciales inválidas o error al iniciar sesión.');
+            console.error(err);
         }
     };
 
@@ -26,11 +28,10 @@ const Login = () => {
             <div className="left-section">
                 <h2>Iniciar Sesión</h2>
                 <form onSubmit={handleLogin}>
-                    {error && <div className="error-message">{error}</div>}
-                    <label>Usuario</label>
+                    <label>Email</label>
                     <input
                         type="email"
-                        placeholder="Ingrese su usuario"
+                        placeholder="Ingrese su email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
@@ -55,6 +56,7 @@ const Login = () => {
                 </div>
             </div>
         </div>
+        
     );
 };
 

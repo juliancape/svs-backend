@@ -7,12 +7,12 @@ const Election = () => {
     const [hasVoted, setHasVoted] = useState(false);
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [candidates, setCandidates] = useState([
-        { id: 1, name: 'Candidato 1', votes: 0 },
-        { id: 2, name: 'Candidato 2', votes: 0 },
-        { id: 3, name: 'Candidato 3', votes: 0 },
-        { id: 4, name: 'Candidato 4', votes: 0 },
-        { id: 5, name: 'Candidato 5', votes: 0 },
-        { id: 6, name: 'Candidato 6', votes: 0 },
+        { id: 1, name: 'Candidato 1', image: 'https://via.placeholder.com/100' },
+        { id: 2, name: 'Candidato 2', image: 'https://via.placeholder.com/100' },
+        { id: 3, name: 'Candidato 3', image: 'https://via.placeholder.com/100' },
+        { id: 4, name: 'Candidato 4', image: 'https://via.placeholder.com/100' },
+        { id: 5, name: 'Candidato 5', image: 'https://via.placeholder.com/100' },
+        { id: 6, name: 'Candidato 6', image: 'https://via.placeholder.com/100' },
     ]);
 
     const userId = '123'; 
@@ -27,7 +27,7 @@ const Election = () => {
 
     const confirmVote = async () => {
         try {
-            const response = await axios.post('http://localhost:3000/votes', {
+            const response = await axios.post('http://localhost:5000/votes', {
                 electionId,
                 userId,
                 candidateId: selectedCandidate,
@@ -37,7 +37,7 @@ const Election = () => {
 
             console.log('Voto registrado exitosamente:', response.data);
 
-            // Actualiza el voto
+            // Actualiza el estado de los votos
             setCandidates((prevCandidates) =>
                 prevCandidates.map((candidate) =>
                     candidate.id === selectedCandidate
@@ -60,8 +60,8 @@ const Election = () => {
     return (
         <div className="election-container">
             <div className="election-header">
-                <h2>Elecciones 2024</h2>
-                <p>Vota por tu candidato favorito:</p>
+                <h2>Emisión de Voto</h2>
+                <p>Selecciona un candidato para votar:</p>
             </div>
 
             {hasVoted ? (
@@ -70,15 +70,16 @@ const Election = () => {
                     <p>Ya has emitido tu voto.</p>
                 </div>
             ) : (
-                <div className="candidate-list">
+                <div className="candidate-grid">
                     {candidates.map((candidate) => (
                         <div
                             key={candidate.id}
-                            className={`candidate-card ${selectedCandidate === candidate.id ? 'selected' : ''
-                                }`}
+                            className={`candidate-card ${selectedCandidate === candidate.id ? 'selected' : ''}`}
                             onClick={() => handleVote(candidate.id)}
                         >
-                            <h3>{candidate.name}</h3>
+                            <img src={candidate.image} alt={candidate.name} className="candidate-image" />
+                            <p className="candidate-name">{candidate.name}</p>
+                            <button className="vote-button">Votar</button>
                         </div>
                     ))}
                 </div>
@@ -94,9 +95,10 @@ const Election = () => {
                     </div>
                 </div>
             )}
-
             <div className="footer">
-                <p>¡Tu voto cuenta!</p>
+                <p>¡Tú Voto Cuenta!</p>
+                <button className="next-btn">Consultar Elecciones</button><br></br>
+                <button className="next-btn">Consultar Resultados</button>
             </div>
         </div>
     );
