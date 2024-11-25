@@ -45,7 +45,6 @@ const Register = () => {
             }
         } catch (error) {
             console.error("Error al enviar la solicitud:", error);
-            setMessage("Ocurrió un error. Inténtalo de nuevo.");
         }
     };
     return (

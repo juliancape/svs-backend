@@ -4,6 +4,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import ElectionList from "./components/ElectionList";
 import Register from "./components/Register";
+import Elections from "./components/Elections";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/elections" element={<ElectionList />} />
+        <Route path="/electionlist" element={<Elections />} />
       </Routes>
     </Router>
   );

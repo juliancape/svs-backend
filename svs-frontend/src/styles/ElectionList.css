@@ -1,0 +1,18 @@
+.election-list-container {
+    margin: 20px auto;
+    width: 80%;
+    text-align: center;
+}
+
+.election-list {
+    list-style: none;
+    padding: 0;
+}
+
+.election-item {
+    background-color: #f4f4f4;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
